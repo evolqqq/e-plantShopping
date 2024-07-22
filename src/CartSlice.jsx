@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 export const CartSlice = createSlice({
   name: 'cart',
@@ -14,6 +16,7 @@ addItem: (state, action) => {
   } else {
     state.items.push({ name, image, cost, quantity: 1 });
   }
+console.log("item added to cart")
 },
     removeItem: (state, action) => {
         state.items = state.items.filter(item => item.name !== action.payload);

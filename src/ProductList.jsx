@@ -2,10 +2,12 @@ import React, { useState,useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
 import { addItem } from './CartSlice';
+import { useDispatch, useSelector } from 'react-redux';
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(true); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
+    const dispatch = useDispatch();
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -236,6 +238,7 @@ function ProductList() {
    const handleCartClick = (e) => {
     e.preventDefault();
     setShowCart(true); // Set showCart to true when cart icon is clicked
+    console.log('opened cart');
 };
 const handlePlantsClick = (e) => {
     e.preventDefault();
@@ -255,6 +258,8 @@ const handlePlantsClick = (e) => {
      [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
    }));
 };
+
+{showCart && <CartItem setShowCart={setShowCart} />}
     return (
         <div>
              <div className="navbar" style={styleObj}>
